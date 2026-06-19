@@ -1,0 +1,169 @@
+[
+  {
+    "case_id": "TC001",
+    "case_name": "Wrong Document Uploaded",
+    "passed": true,
+    "decision": "ClaimDecision.PENDING_DOCUMENTS",
+    "approved_amount": null,
+    "confidence": null,
+    "message": "Missing required document: Hospital Bill. For a Consultation claim, you must upload: Prescription, Hospital Bill.",
+    "notes": [
+      "\u2705 System stopped before making claim decision (correct)"
+    ],
+    "trace_steps": 2
+  },
+  {
+    "case_id": "TC002",
+    "case_name": "Unreadable Document",
+    "passed": true,
+    "decision": "ClaimDecision.PENDING_DOCUMENTS",
+    "approved_amount": null,
+    "confidence": null,
+    "message": "The document 'blurry_bill.jpg' (Pharmacy Bill) could not be read \u2014 it appears blurry or unclear. Please re-upload a clearer photo or scan of this document.",
+    "notes": [
+      "\u2705 System stopped before making claim decision (correct)"
+    ],
+    "trace_steps": 2
+  },
+  {
+    "case_id": "TC003",
+    "case_name": "Documents Belong to Different Patients",
+    "passed": true,
+    "decision": "ClaimDecision.PENDING_DOCUMENTS",
+    "approved_amount": null,
+    "confidence": null,
+    "message": "Documents appear to belong to different patients: Prescription shows 'Rajesh Kumar', Hospital Bill shows 'Arjun Mehta'. All documents in a single claim must be for the same patient.",
+    "notes": [
+      "\u2705 System stopped before making claim decision (correct)"
+    ],
+    "trace_steps": 2
+  },
+  {
+    "case_id": "TC004",
+    "case_name": "Clean Consultation \u00e2\u20ac\u201d Full Approval",
+    "passed": true,
+    "decision": "ClaimDecision.APPROVED",
+    "approved_amount": 1350.0,
+    "confidence": 0.95,
+    "message": "Claim approved. Amount adjusted after policy deductions. Approved: \u20b91,350.",
+    "notes": [
+      "\u2705 Decision: APPROVED",
+      "\u2705 Amount: \u20b91350.0",
+      "\u2705 Confidence 0.95 >= 0.85"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC005",
+    "case_name": "Waiting Period \u00e2\u20ac\u201d Diabetes",
+    "passed": true,
+    "decision": "ClaimDecision.REJECTED",
+    "approved_amount": 0.0,
+    "confidence": 0.95,
+    "message": "Claim rejected. Reasons: WAITING_PERIOD: Waiting period of 90 days for diabetes not completed. Member joined 2024-09-01.. Eligible from: 2024-11-30.",
+    "notes": [
+      "\u2705 Decision: REJECTED",
+      "\u2705 Rejection reason present: WAITING_PERIOD"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC006",
+    "case_name": "Dental Partial Approval \u00e2\u20ac\u201d Cosmetic Exclusion",
+    "passed": true,
+    "decision": "ClaimDecision.PARTIAL",
+    "approved_amount": 8000.0,
+    "confidence": 0.95,
+    "message": "Claim partially approved. Some line items were excluded. Approved: \u20b98,000 of \u20b912,000 claimed.",
+    "notes": [
+      "\u2705 Decision: PARTIAL",
+      "\u2705 Amount: \u20b98000.0"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC007",
+    "case_name": "MRI Without Pre-Authorization",
+    "passed": true,
+    "decision": "ClaimDecision.REJECTED",
+    "approved_amount": 0.0,
+    "confidence": 0.95,
+    "message": "Claim rejected. Reasons: PRE_AUTH_REQUIRED: This claim requires pre-authorization (MRI/CT/PET scan above \u20b910,000). No pre-authorization was provided. | PER_CLAIM_EXCEEDED: Claimed amount \u20b915,000 exceeds per-claim limit of \u20b95,000.",
+    "notes": [
+      "\u2705 Decision: REJECTED",
+      "\u2705 Rejection reason present: PRE_AUTH_MISSING"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC008",
+    "case_name": "Per-Claim Limit Exceeded",
+    "passed": true,
+    "decision": "ClaimDecision.REJECTED",
+    "approved_amount": 0.0,
+    "confidence": 0.95,
+    "message": "Claim rejected. Reasons: PER_CLAIM_EXCEEDED: Claimed amount \u20b97,500 exceeds per-claim limit of \u20b95,000.",
+    "notes": [
+      "\u2705 Decision: REJECTED",
+      "\u2705 Rejection reason present: PER_CLAIM_EXCEEDED"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC009",
+    "case_name": "Fraud Signal \u00e2\u20ac\u201d Multiple Same-Day Claims",
+    "passed": true,
+    "decision": "ClaimDecision.MANUAL_REVIEW",
+    "approved_amount": null,
+    "confidence": 0.85,
+    "message": "This claim has been flagged for manual review due to unusual patterns. Signals: SAME_DAY_CLAIMS: Member has 3 existing claims on 2024-10-30 (limit: 2). Providers: City Clinic A, City Clinic B, Wellness Center.; MULTIPLE_PROVIDERS_SAME_DAY: Claims from 3 different providers on the same day: City Clinic A, City Clinic B, Wellness Center.",
+    "notes": [
+      "\u2705 Decision: MANUAL_REVIEW"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC010",
+    "case_name": "Network Hospital \u00e2\u20ac\u201d Discount Applied",
+    "passed": true,
+    "decision": "ClaimDecision.APPROVED",
+    "approved_amount": 3240.0,
+    "confidence": 0.95,
+    "message": "Claim approved. Amount adjusted after policy deductions. Approved: \u20b93,240.",
+    "notes": [
+      "\u2705 Decision: APPROVED",
+      "\u2705 Amount: \u20b93240.0"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC011",
+    "case_name": "Component Failure \u00e2\u20ac\u201d Graceful Degradation",
+    "passed": true,
+    "decision": "ClaimDecision.APPROVED",
+    "approved_amount": 4000.0,
+    "confidence": 0.7,
+    "message": "Claim approved. Approved amount: \u20b94,000.",
+    "notes": [
+      "\u2705 Decision: APPROVED",
+      "\u2705 Component failure recorded: ['DocumentParser']",
+      "\u2705 Manual review recommended due to component failure"
+    ],
+    "trace_steps": 6
+  },
+  {
+    "case_id": "TC012",
+    "case_name": "Excluded Treatment",
+    "passed": true,
+    "decision": "ClaimDecision.REJECTED",
+    "approved_amount": 0.0,
+    "confidence": 0.95,
+    "message": "Claim rejected. Reasons: WAITING_PERIOD: Waiting period of 365 days for obesity treatment not completed. Member joined 2024-04-01.. Eligible from: 2025-04-01. | EXCLUDED_CONDITION: Diagnosis falls under excluded condition: obesity | PER_CLAIM_EXCEEDED: Claimed amount \u20b98,000 exceeds per-claim limit of \u20b95,000.",
+    "notes": [
+      "\u2705 Decision: REJECTED",
+      "\u2705 Rejection reason present: EXCLUDED_CONDITION",
+      "\u2705 Confidence 0.95 >= 0.9"
+    ],
+    "trace_steps": 6
+  }
+]
